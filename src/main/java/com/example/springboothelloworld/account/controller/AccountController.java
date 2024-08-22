@@ -44,13 +44,12 @@ public class AccountController {
             return "Failed to update account with id: " + account.getID();
     }
 
-    //Todo: Fix this method, the delete does not actually delete and change the input to id and not account also add github support.
     @DeleteMapping
-    public String deleteAccount(@RequestBody Account account) {
-        boolean successful = accountManagerService.deleteAccount(account);
+    public String deleteAccount(@RequestParam(name = "id") int id) {
+        boolean successful = accountManagerService.deleteAccount(id);
         if (successful)
-            return "Successfully deleted account with id: " + account.getID();
+            return "Successfully deleted account with id: " + id;
         else
-            return "Failed to delete account with id: " + account.getID();
+            return "Failed to delete account with id: " + id;
     }
 }

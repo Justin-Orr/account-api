@@ -36,7 +36,12 @@ public class AccountRepository {
         return false;
     }
 
-    public boolean deleteAccount(Account account) {
-        return accounts.remove(account);
+    public boolean deleteAccount(int id) {
+        Account account = findAccount(id);
+        if(account != null) {
+            return accounts.remove(account);
+        } else {
+            return false;
+        }
     }
 }

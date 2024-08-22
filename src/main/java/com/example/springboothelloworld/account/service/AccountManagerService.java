@@ -31,8 +31,8 @@ public class AccountManagerService {
         return accountRepository.updateAccount(account);
     }
 
-    public boolean deleteAccount(Account account) {
-        return accountRepository.deleteAccount(account);
+    public boolean deleteAccount(int id) {
+        return accountRepository.deleteAccount(id);
     }
 
 }

@@ -4,7 +4,7 @@ import com.example.springboothelloworld.account.domain.Account;
 import com.example.springboothelloworld.account.service.AccountManagerService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/account")
@@ -26,7 +26,7 @@ public class AccountController {
     }
 
     @GetMapping
-    public ArrayList<Account> getAllAccounts() {
+    public List<Account> getAllAccounts() {
         return accountManagerService.getAccounts();
     }
 

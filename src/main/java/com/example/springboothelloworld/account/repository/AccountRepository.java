@@ -4,44 +4,51 @@ import com.example.springboothelloworld.account.domain.Account;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class AccountRepository {
     private static final ArrayList<Account> accounts = new ArrayList<Account>();
 
-    public boolean insertAccount(Account account) {
-        return accounts.add(account);
+    public Account insertAccount(Account account) {
+        if(accounts.add(account)) {
+            return account;
+        } else {
+            return null;
+        }
     }
 
-    public Account findAccount(int id) {
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public Account findAccount(UUID id) {
         for(Account account : accounts) {
-            if(account.getID() == id) {
+            if(account.getID().compareTo(id) == 0) {
                 return account;
             }
         }
         return null;
     }
 
-    public ArrayList<Account> getAccounts() {
-        return accounts;
-    }
-
-    public boolean updateAccount(Account inputAccount) {
+    public Account updateAccount(Account inputAccount) {
         for(Account account : accounts) {
-            if(account.getID() == inputAccount.getID()) {
-                accounts.remove(account);
-                return accounts.add(inputAccount);
+            if(account.getID().compareTo(inputAccount.getID()) == 0) {
+                account.setName(inputAccount.getName());
+                return account;
             }
         }
-        return false;
+        return null;
     }
 
-    public boolean deleteAccount(int id) {
+    public Account deleteAccount(UUID id) {
         Account account = findAccount(id);
         if(account != null) {
-            return accounts.remove(account);
+            accounts.remove(account);
+            return account;
         } else {
-            return false;
+            return null;
         }
     }
 }

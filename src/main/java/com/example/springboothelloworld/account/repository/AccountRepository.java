@@ -12,11 +12,8 @@ public class AccountRepository {
     private static final ArrayList<Account> accounts = new ArrayList<Account>();
 
     public Account insertAccount(Account account) {
-        if(accounts.add(account)) {
-            return account;
-        } else {
-            return null;
-        }
+        accounts.add(account);
+        return account;
     }
 
     public List<Account> getAccounts() {
@@ -44,11 +41,7 @@ public class AccountRepository {
 
     public Account deleteAccount(UUID id) {
         Account account = findAccount(id);
-        if(account != null) {
-            accounts.remove(account);
-            return account;
-        } else {
-            return null;
-        }
+        accounts.remove(account);
+        return account;
     }
 }

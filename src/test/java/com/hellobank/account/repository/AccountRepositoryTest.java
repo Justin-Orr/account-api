@@ -1,13 +1,11 @@
-package com.example.springboothelloworld.unit.account.repository;
+package com.hellobank.account.repository;
 
-import com.example.springboothelloworld.account.domain.Account;
-import com.example.springboothelloworld.account.repository.AccountRepository;
+import com.hellobank.account.domain.Account;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.UUID;

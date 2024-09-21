@@ -1,4 +1,4 @@
-package com.example.springboothelloworld.unit.account.service;
+package com.hellobank.account.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.springboothelloworld.account.domain.Account;
-import com.example.springboothelloworld.account.repository.AccountRepository;
-import com.example.springboothelloworld.account.service.AccountManagerService;
+import com.hellobank.account.domain.Account;
+import com.hellobank.account.repository.AccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

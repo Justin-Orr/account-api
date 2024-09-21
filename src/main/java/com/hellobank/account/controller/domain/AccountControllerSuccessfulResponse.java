@@ -1,4 +1,4 @@
-package com.example.springboothelloworld.account.controller.domain;
+package com.hellobank.account.controller.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

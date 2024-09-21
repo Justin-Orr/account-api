@@ -8,11 +8,11 @@
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example.springboothelloworld</groupId>
-	<artifactId>springboothelloworld</artifactId>
+	<groupId>com.hellobank</groupId>
+	<artifactId>accounts-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboothelloworld</name>
-	<description>Demo project for Spring Boot</description>
+	<name>accounts-api</name>
+	<description>A microservice application for managing account information for a bank.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -68,12 +68,6 @@
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<excludes>
-						<exclude>com/example/springboothelloworld/domain*</exclude>
-						<exclude>com/example/springboothelloworld/controller/domain*</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

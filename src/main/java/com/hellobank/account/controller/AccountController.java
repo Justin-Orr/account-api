@@ -1,10 +1,10 @@
-package com.example.springboothelloworld.account.controller;
+package com.hellobank.account.controller;
 
-import com.example.springboothelloworld.account.controller.domain.AccountControllerErrorResponse;
-import com.example.springboothelloworld.account.controller.domain.AccountControllerResponse;
-import com.example.springboothelloworld.account.controller.domain.AccountControllerSuccessfulResponse;
-import com.example.springboothelloworld.account.domain.Account;
-import com.example.springboothelloworld.account.service.AccountManagerService;
+import com.hellobank.account.controller.domain.AccountControllerErrorResponse;
+import com.hellobank.account.controller.domain.AccountControllerResponse;
+import com.hellobank.account.controller.domain.AccountControllerSuccessfulResponse;
+import com.hellobank.account.domain.Account;
+import com.hellobank.account.service.AccountManagerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

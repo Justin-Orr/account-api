@@ -1,4 +1,4 @@
-package com.example.springboothelloworld.config;
+package com.hellobank.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

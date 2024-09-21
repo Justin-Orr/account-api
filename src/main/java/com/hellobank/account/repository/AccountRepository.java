@@ -1,6 +1,6 @@
-package com.example.springboothelloworld.account.repository;
+package com.hellobank.account.repository;
 
-import com.example.springboothelloworld.account.domain.Account;
+import com.hellobank.account.domain.Account;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Repository
 public class AccountRepository {
-    private static final ArrayList<Account> accounts = new ArrayList<Account>();
+    private static final ArrayList<Account> accounts = new ArrayList<>();
 
     public Account insertAccount(Account account) {
         accounts.add(account);

@@ -1,9 +1,9 @@
-package com.example.springboothelloworld.account.service;
+package com.hellobank.account.service;
 
-import com.example.springboothelloworld.account.domain.Account;
-import com.example.springboothelloworld.account.repository.AccountRepository;
+import com.hellobank.account.domain.Account;
+import com.hellobank.account.repository.AccountRepository;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
 

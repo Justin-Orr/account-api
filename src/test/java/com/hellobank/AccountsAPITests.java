@@ -1,13 +1,14 @@
-package com.example.springboothelloworld;
+package com.hellobank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringboothelloworldApplicationTests {
+class AccountsAPITests {
 
 	@Test
 	void contextLoads() {
+		AccountsAPI.main(new String[] {});
 	}
 
 }

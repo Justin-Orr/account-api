@@ -1,15 +1,27 @@
 package com.example.springboothelloworld.account.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.UUID;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Account {
-    private int id;
+    @JsonProperty("id")
+    private UUID id;
+    @JsonProperty("name")
     private String name;
 
-    public Account(int id, String name) {
+    public Account() {
+        // Needed for Jackson to deserialize objects from the REST Controller
+    }
+
+    public Account(UUID id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getID() {
+    public UUID getID() {
         return this.id;
     }
 
@@ -17,7 +29,7 @@ public class Account {
         return this.name;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

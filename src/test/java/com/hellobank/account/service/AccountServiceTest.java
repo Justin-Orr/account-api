@@ -18,13 +18,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class AccountManagerServiceTest {
+class AccountServiceTest {
 
     @Mock
     AccountRepository accountRepository;
 
     @InjectMocks
-    AccountManagerService accountService;
+    AccountService accountService;
 
     @Test
     @DisplayName("Successfully create an account")

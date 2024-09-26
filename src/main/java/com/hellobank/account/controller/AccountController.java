@@ -1,95 +1,71 @@
 package com.hellobank.account.controller;
 
-import com.hellobank.account.controller.domain.AccountControllerErrorResponse;
+import com.hellobank.account.controller.domain.AccountControllerListResponse;
 import com.hellobank.account.controller.domain.AccountControllerResponse;
-import com.hellobank.account.controller.domain.AccountControllerSuccessfulResponse;
 import com.hellobank.account.domain.Account;
-import com.hellobank.account.service.AccountManagerService;
+import com.hellobank.account.repository.error.AccountNotFoundException;
+import com.hellobank.account.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("v1/accounts")
 public class AccountController {
 
     // Dependency Injection Setup
-    private final AccountManagerService accountManagerService;
+    private final AccountService accountService;
 
-    public AccountController(AccountManagerService accountManagerService) {
-        this.accountManagerService = accountManagerService;
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
     }
 
     // The Response Entity object serializes the object its wrapping to turn into JSON.
     @PostMapping(produces = "application/json")
     public ResponseEntity<AccountControllerResponse> createAccount(@RequestParam(name = "name") String name) {
-        Account account = accountManagerService.createAccount(name);
-        if (account != null) {
-            return ResponseEntity
-                    .status(201)
-                    .body(new AccountControllerSuccessfulResponse(account));
-        } else {
-            return ResponseEntity
-                    .unprocessableEntity()
-                    .body(new AccountControllerErrorResponse("Failed to create account with name: " + name));
-        }
-    }
-
-    @GetMapping(produces = "application/json")
-    public ResponseEntity<AccountControllerResponse> getAllAccounts() {
-        List<Account> accounts = accountManagerService.getAccounts();
-        if(accounts != null) {
-            return ResponseEntity
-                    .ok()
-                    .body(new AccountControllerSuccessfulResponse(accounts));
-        } else {
-            return ResponseEntity
-                    .internalServerError()
-                    .body(new AccountControllerErrorResponse("Internal Server Error occurred"));
-        }
+        Account account = accountService.createAccount(name);
+        return ResponseEntity.status(201).body(new AccountControllerResponse(account));
     }
 
     @GetMapping(path = "/{id}", produces = "application/json")
     public ResponseEntity<AccountControllerResponse> findAccount(@PathVariable("id") UUID id) {
-        Account account = accountManagerService.getAccount(id);
-        if(account != null) {
-            return ResponseEntity
-                    .ok()
-                    .body(new AccountControllerSuccessfulResponse(account));
-        } else {
-            return ResponseEntity
-                    .status(404)
-                    .body(new AccountControllerErrorResponse("No account found"));
+        try {
+            Account account = accountService.getAccount(id);
+            return ResponseEntity.status(200).body(new AccountControllerResponse(account));
+        } catch (AccountNotFoundException exception) {
+            throw new ResponseStatusException(exception.getStatus(), exception.getMessage(), exception);
         }
     }
 
-    @PutMapping(produces = "application/json")
-    public ResponseEntity<AccountControllerResponse> updateAccount(@RequestBody Account updatedAccount) {
-        Account account = accountManagerService.updateAccount(updatedAccount);
-        if(account != null) {
-            return ResponseEntity
-                    .ok()
-                    .body(new AccountControllerSuccessfulResponse(account));
-        } else {
-            return ResponseEntity
-                    .unprocessableEntity()
-                    .body(new AccountControllerErrorResponse("Failed to update account"));
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<AccountControllerListResponse> getAllAccounts() {
+        List<Account> accounts = accountService.getAccounts();
+        return ResponseEntity.status(200).body(new AccountControllerListResponse(accounts));
+    }
+
+    @PutMapping(path = "/{id}", produces = "application/json")
+    public ResponseEntity<AccountControllerResponse> updateAccount(
+            @PathVariable("id") UUID id,
+            @RequestParam(name = "name") String name)
+    {
+        try {
+            Account account = accountService.updateAccount(id, name);
+            return ResponseEntity.status(200).body(new AccountControllerResponse(account));
+        } catch (AccountNotFoundException exception) {
+            throw new ResponseStatusException(exception.getStatus(), exception.getMessage(), exception);
         }
     }
 
-    @DeleteMapping(produces = "application/json")
-    public ResponseEntity<AccountControllerResponse> deleteAccount(@RequestParam(name = "id") UUID id) {
-        Account account = accountManagerService.deleteAccount(id);
-        if(account != null) {
-            return ResponseEntity
-                    .ok()
-                    .body(new AccountControllerSuccessfulResponse(account));
-        } else {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new AccountControllerErrorResponse("Failed to delete account"));
+    @DeleteMapping(path = "/{id}", produces = "application/json")
+    public ResponseEntity<AccountControllerResponse> deleteAccount(@PathVariable("id") UUID id) {
+        try {
+            accountService.deleteAccount(id);
+            return ResponseEntity.status(200).body(new AccountControllerResponse("Successfully deleted account"));
+        } catch (AccountNotFoundException exception) {
+            throw new ResponseStatusException(exception.getStatus(), exception.getMessage(), exception);
         }
     }
 }

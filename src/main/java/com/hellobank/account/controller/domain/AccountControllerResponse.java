@@ -1,11 +1,14 @@
 package com.hellobank.account.controller.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hellobank.account.domain.Account;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountControllerResponse {
+    @JsonProperty("account")
     private Account account;
+    @JsonProperty("message")
     private String message;
 
     public AccountControllerResponse(Account account) {

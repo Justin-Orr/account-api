@@ -13,35 +13,18 @@ public class AccountControllerListResponse {
         this.metadata = new MetaData(accounts.size());
     }
 
-    public List<Account> getAccount() {
+    public List<Account> getAccounts() {
         return accounts;
     }
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+        this.metadata = new MetaData(accounts.size());
     }
 
     public MetaData getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(MetaData metadata) {
-        this.metadata = metadata;
-    }
-
-    public static class MetaData {
-        private int totalCount;
-
-        public MetaData(int totalCount) {
-            this.totalCount = totalCount;
-        }
-
-        public int getTotalCount() {
-            return totalCount;
-        }
-
-        public void setTotalCount(int totalCount) {
-            this.totalCount = totalCount;
-        }
-    }
+    public record MetaData(int totalCount) {}
 }

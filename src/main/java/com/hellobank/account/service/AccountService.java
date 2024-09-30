@@ -2,17 +2,18 @@ package com.hellobank.account.service;
 
 import com.hellobank.account.domain.Account;
 import com.hellobank.account.repository.AccountRepository;
+import com.hellobank.account.repository.error.AccountNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class AccountManagerService {
+public class AccountService {
 
     private final AccountRepository accountRepository;
 
-    public AccountManagerService(AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
@@ -24,16 +25,16 @@ public class AccountManagerService {
         return accountRepository.getAccounts();
     }
 
-    public Account getAccount(UUID id) {
+    public Account getAccount(UUID id) throws AccountNotFoundException {
         return accountRepository.findAccount(id);
     }
 
-    public Account updateAccount(Account account) {
-        return accountRepository.updateAccount(account);
+    public Account updateAccount(UUID id, String name) throws AccountNotFoundException {
+        return accountRepository.updateAccount(new Account(id, name));
     }
 
-    public Account deleteAccount(UUID id) {
-        return accountRepository.deleteAccount(id);
+    public void deleteAccount(UUID id) throws AccountNotFoundException {
+        accountRepository.deleteAccount(id);
     }
 
 }

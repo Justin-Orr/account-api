@@ -1,6 +1,8 @@
 package com.hellobank.account.repository;
 
 import com.hellobank.account.domain.Account;
+import com.hellobank.account.repository.error.AccountNotFoundException;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,28 +22,27 @@ public class AccountRepository {
         return accounts;
     }
 
-    public Account findAccount(UUID id) {
+    public Account findAccount(UUID id) throws AccountNotFoundException {
         for(Account account : accounts) {
             if(account.getID().compareTo(id) == 0) {
                 return account;
             }
         }
-        return null;
+        throw new AccountNotFoundException(HttpStatusCode.valueOf(404), "Account not found");
     }
 
-    public Account updateAccount(Account inputAccount) {
+    public Account updateAccount(Account inputAccount) throws AccountNotFoundException {
         for(Account account : accounts) {
             if(account.getID().compareTo(inputAccount.getID()) == 0) {
                 account.setName(inputAccount.getName());
-                return account;
+                return inputAccount;
             }
         }
-        return null;
+        throw new AccountNotFoundException(HttpStatusCode.valueOf(404), "Account not found");
     }
 
-    public Account deleteAccount(UUID id) {
+    public void deleteAccount(UUID id) throws AccountNotFoundException {
         Account account = findAccount(id);
         accounts.remove(account);
-        return account;
     }
 }

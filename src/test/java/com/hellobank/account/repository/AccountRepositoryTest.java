@@ -1,11 +1,13 @@
 package com.hellobank.account.repository;
 
 import com.hellobank.account.domain.Account;
+import com.hellobank.account.repository.error.AccountNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatusCode;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,8 +25,8 @@ class AccountRepositoryTest {
     }
 
     @Test
-    @DisplayName("Successfully insert an account")
-    void successfullyInsertAccountTest() {
+    @DisplayName("Insert an account")
+    void insertAccountTest() {
         Account account = new Account(UUID.randomUUID(), "John");
 
         Account insertedAccount = accountRepository.insertAccount(account);
@@ -32,12 +34,6 @@ class AccountRepositoryTest {
         assertNotNull(insertedAccount);
         assertEquals(0, insertedAccount.getID().compareTo(account.getID()));
         assertEquals(0, insertedAccount.getName().compareTo(account.getName()));
-    }
-
-    @Test
-    @DisplayName("Fail to insert an account")
-    void failInsertAccountTest() {
-        assertNull(accountRepository.insertAccount(null));
     }
 
     @Test
@@ -66,17 +62,27 @@ class AccountRepositoryTest {
 
         accountRepository.insertAccount(expectedAccount);
         accountRepository.insertAccount(new Account(UUID.randomUUID(), "Doe"));
-        Account searchedAccount = accountRepository.findAccount(id);
 
-        assertNotNull(searchedAccount);
-        assertEquals(0, searchedAccount.getID().compareTo(expectedAccount.getID()));
-        assertEquals(0, searchedAccount.getName().compareTo(expectedAccount.getName()));
+        try {
+            Account searchedAccount = accountRepository.findAccount(id);
+            assertNotNull(searchedAccount);
+            assertEquals(0, searchedAccount.getID().compareTo(expectedAccount.getID()));
+            assertEquals(0, searchedAccount.getName().compareTo(expectedAccount.getName()));
+        } catch (AccountNotFoundException exception) {
+            fail("Expected to succeed in finding the account");
+        }
     }
 
     @Test
     @DisplayName("Fail to find the correct account.")
     void failToFindAccountTest() {
-        assertNull(accountRepository.findAccount(UUID.randomUUID()));
+        try {
+            accountRepository.findAccount(UUID.randomUUID());
+            fail("No account should be found");
+        } catch (AccountNotFoundException exception) {
+            assertEquals(exception.getStatus(), HttpStatusCode.valueOf(404));
+            assertEquals(0, exception.getMessage().compareTo("Account not found"));
+        }
     }
 
     @Test
@@ -85,17 +91,29 @@ class AccountRepositoryTest {
         UUID id = UUID.randomUUID();
 
         accountRepository.insertAccount(new Account(id, "John"));
-        Account account = accountRepository.updateAccount(new Account(id, "Doe"));
 
-        assertNotNull(account);
-        assertEquals(0, account.getID().compareTo(id));
-        assertEquals(0, account.getName().compareTo("Doe"));
+        try {
+            Account account = accountRepository.updateAccount(new Account(id, "Doe"));
+
+            assertNotNull(account);
+            assertEquals(0, account.getID().compareTo(id));
+            assertEquals(0, account.getName().compareTo("Doe"));
+        } catch (AccountNotFoundException exception) {
+            fail("Expected to succeed in finding the account");
+        }
+
     }
 
     @Test
     @DisplayName("Fail to update account due to non existent account.")
     void failToUpdateAccountTest() {
-        assertNull(accountRepository.updateAccount(new Account(UUID.randomUUID(), "John")));
+        try {
+            accountRepository.updateAccount(new Account(UUID.randomUUID(), "John"));
+            fail("No account should be found");
+        } catch (AccountNotFoundException exception) {
+            assertEquals(exception.getStatus(), HttpStatusCode.valueOf(404));
+            assertEquals(0, exception.getMessage().compareTo("Account not found"));
+        }
     }
 
     @Test
@@ -106,16 +124,24 @@ class AccountRepositoryTest {
         accountRepository.insertAccount(new Account(id, "John"));
         assertEquals(1, accountRepository.getAccounts().size());
 
-        Account account = accountRepository.deleteAccount(id);
-        assertEquals(0, accountRepository.getAccounts().size());
-        assertEquals(0, account.getID().compareTo(id));
-        assertEquals(0, account.getName().compareTo("John"));
+        try {
+            accountRepository.deleteAccount(id);
+            assertEquals(0, accountRepository.getAccounts().size());
+        } catch (AccountNotFoundException exception) {
+            fail("Expected to succeed in finding the account");
+        }
     }
 
     @Test
     @DisplayName("Fail to delete account.")
     void failToDeleteAccountTest() {
-        assertNull(accountRepository.deleteAccount(UUID.randomUUID()));
+        try {
+            accountRepository.deleteAccount(UUID.randomUUID());
+            fail("No account should be found");
+        } catch (AccountNotFoundException exception) {
+            assertEquals(exception.getStatus(), HttpStatusCode.valueOf(404));
+            assertEquals(0, exception.getMessage().compareTo("Account not found"));
+        }
     }
 
 }

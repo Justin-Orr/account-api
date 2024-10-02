@@ -1,14 +1,14 @@
-package com.hellobank;
+package com.hellobank.accountsapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AccountsAPI {
+public class AccountsAPIApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(AccountsAPI.class, args);
+		SpringApplication.run(AccountsAPIApplication.class, args);
 
 	}
 

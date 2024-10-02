@@ -1,8 +1,9 @@
-package com.hellobank.account.controller;
+package com.hellobank.accountsapi.account.controller;
 
-import com.hellobank.account.domain.Account;
-import com.hellobank.account.repository.error.AccountNotFoundException;
-import com.hellobank.account.service.AccountService;
+import com.hellobank.accountsapi.account.controller.AccountController;
+import com.hellobank.accountsapi.account.domain.Account;
+import com.hellobank.accountsapi.account.repository.error.AccountNotFoundException;
+import com.hellobank.accountsapi.account.service.AccountService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

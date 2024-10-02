@@ -1,7 +1,8 @@
-package com.hellobank.account.repository;
+package com.hellobank.accountsapi.account.repository;
 
-import com.hellobank.account.domain.Account;
-import com.hellobank.account.repository.error.AccountNotFoundException;
+import com.hellobank.accountsapi.account.domain.Account;
+import com.hellobank.accountsapi.account.repository.AccountRepository;
+import com.hellobank.accountsapi.account.repository.error.AccountNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

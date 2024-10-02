@@ -1,10 +1,10 @@
-package com.hellobank.account.controller;
+package com.hellobank.accountsapi.account.controller;
 
-import com.hellobank.account.controller.domain.AccountControllerListResponse;
-import com.hellobank.account.controller.domain.AccountControllerResponse;
-import com.hellobank.account.domain.Account;
-import com.hellobank.account.repository.error.AccountNotFoundException;
-import com.hellobank.account.service.AccountService;
+import com.hellobank.accountsapi.account.controller.domain.AccountControllerListResponse;
+import com.hellobank.accountsapi.account.controller.domain.AccountControllerResponse;
+import com.hellobank.accountsapi.account.domain.Account;
+import com.hellobank.accountsapi.account.repository.error.AccountNotFoundException;
+import com.hellobank.accountsapi.account.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;

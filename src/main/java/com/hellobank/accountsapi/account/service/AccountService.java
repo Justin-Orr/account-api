@@ -1,8 +1,8 @@
-package com.hellobank.account.service;
+package com.hellobank.accountsapi.account.service;
 
-import com.hellobank.account.domain.Account;
-import com.hellobank.account.repository.AccountRepository;
-import com.hellobank.account.repository.error.AccountNotFoundException;
+import com.hellobank.accountsapi.account.domain.Account;
+import com.hellobank.accountsapi.account.repository.AccountRepository;
+import com.hellobank.accountsapi.account.repository.error.AccountNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

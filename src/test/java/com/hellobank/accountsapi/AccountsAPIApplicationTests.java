@@ -1,14 +1,14 @@
-package com.hellobank;
+package com.hellobank.accountsapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AccountsAPITests {
+class AccountsAPIApplicationTests {
 
 	@Test
 	void contextLoads() {
-		AccountsAPI.main(new String[] {});
+		AccountsAPIApplication.main(new String[] {});
 	}
 
 }

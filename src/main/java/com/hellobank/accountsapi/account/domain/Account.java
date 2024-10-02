@@ -1,4 +1,4 @@
-package com.hellobank.account.domain;
+package com.hellobank.accountsapi.account.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

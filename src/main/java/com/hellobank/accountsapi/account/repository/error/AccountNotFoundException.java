@@ -1,4 +1,4 @@
-package com.hellobank.account.repository.error;
+package com.hellobank.accountsapi.account.repository.error;
 
 import org.springframework.http.HttpStatusCode;
 

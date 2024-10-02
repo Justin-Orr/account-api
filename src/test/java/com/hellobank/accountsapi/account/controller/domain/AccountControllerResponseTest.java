@@ -1,6 +1,7 @@
-package com.hellobank.account.controller.domain;
+package com.hellobank.accountsapi.account.controller.domain;
 
-import com.hellobank.account.domain.Account;
+import com.hellobank.accountsapi.account.controller.domain.AccountControllerResponse;
+import com.hellobank.accountsapi.account.domain.Account;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

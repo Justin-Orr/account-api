@@ -1,6 +1,6 @@
-package com.hellobank.account.controller.domain;
+package com.hellobank.accountsapi.account.controller.domain;
 
-import com.hellobank.account.domain.Account;
+import com.hellobank.accountsapi.account.domain.Account;
 
 import java.util.List;
 

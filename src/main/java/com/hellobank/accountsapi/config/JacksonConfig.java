@@ -1,4 +1,4 @@
-package com.hellobank.config;
+package com.hellobank.accountsapi.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

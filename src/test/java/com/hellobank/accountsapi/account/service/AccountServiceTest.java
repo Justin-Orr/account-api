@@ -1,4 +1,4 @@
-package com.hellobank.account.service;
+package com.hellobank.accountsapi.account.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.hellobank.account.domain.Account;
-import com.hellobank.account.repository.AccountRepository;
-import com.hellobank.account.repository.error.AccountNotFoundException;
+import com.hellobank.accountsapi.account.domain.Account;
+import com.hellobank.accountsapi.account.repository.AccountRepository;
+import com.hellobank.accountsapi.account.repository.error.AccountNotFoundException;
+import com.hellobank.accountsapi.account.service.AccountService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

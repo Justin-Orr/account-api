@@ -1,8 +1,8 @@
-package com.hellobank.account.controller.domain;
+package com.hellobank.accountsapi.account.controller.domain;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hellobank.account.domain.Account;
+import com.hellobank.accountsapi.account.domain.Account;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountControllerResponse {

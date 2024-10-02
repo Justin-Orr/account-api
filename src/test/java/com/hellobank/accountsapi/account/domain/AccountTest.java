@@ -1,6 +1,6 @@
-package com.hellobank.account.domain;
+package com.hellobank.accountsapi.account.domain;
 
-import org.junit.jupiter.api.DisplayName;
+import com.hellobank.accountsapi.account.domain.Account;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

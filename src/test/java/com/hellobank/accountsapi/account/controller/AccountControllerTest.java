@@ -1,6 +1,5 @@
 package com.hellobank.accountsapi.account.controller;
 
-import com.hellobank.accountsapi.account.controller.AccountController;
 import com.hellobank.accountsapi.account.domain.Account;
 import com.hellobank.accountsapi.account.repository.error.AccountNotFoundException;
 import com.hellobank.accountsapi.account.service.AccountService;
@@ -16,10 +15,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(AccountController.class) // Focus on testing the controller layer
 class AccountControllerTest {
